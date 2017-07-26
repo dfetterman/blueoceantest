@@ -15,9 +15,9 @@ pipeline {
         
       }
     }
-    stage('') {
+    stage('stage3') {
       steps {
-        error '1'
+        echo 'stage 3'
       }
     }
   }
