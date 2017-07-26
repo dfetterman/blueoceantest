@@ -1,14 +1,18 @@
 pipeline {
-  agent {
-    docker {
-      image 'httpd'
-    }
-    
-  }
+  agent none
   stages {
     stage('thing') {
       steps {
-        echo 'printing this message'
+        parallel(
+          "thing": {
+            echo 'printing this message'
+            
+          },
+          "input": {
+            input(message: 'interactive input', submitter: 'danefett')
+            
+          }
+        )
       }
     }
     stage('thing2 ') {
