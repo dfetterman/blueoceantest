@@ -1,34 +1,23 @@
 pipeline {
   agent none
   stages {
-    stage('thing') {
+    stage('stage 1') {
       steps {
-        input(message: 'interactive input', submitter: 'koneru')
+        sh 'echo "stage 1"'
       }
     }
-    stage('thing2 ') {
+    stage('stage 2') {
       steps {
-        parallel(
-          "thing2 ": {
-            sh '''echo "shell script"
-'''
-            
-          },
-          "thing2a": {
-            sh 'echo "shell script 2a"'
-            
-          }
-        )
+        waitUntil() {
+          input(message: 'interactive input goes here', ok: 'true', submitter: 'danefett')
+          echo 'foobar is my message'
+        }
+        
       }
     }
-    stage('thing 3') {
+    stage('') {
       steps {
-        sleep 4
-      }
-    }
-    stage('thing 4') {
-      steps {
-        cleanWs(cleanWhenSuccess: true)
+        error '1'
       }
     }
   }
