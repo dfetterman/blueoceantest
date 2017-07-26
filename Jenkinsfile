@@ -3,16 +3,7 @@ pipeline {
   stages {
     stage('thing') {
       steps {
-        parallel(
-          "thing": {
-            echo 'printing this message'
-            
-          },
-          "input": {
-            input(message: 'interactive input', submitter: 'danefett')
-            
-          }
-        )
+        input(message: 'interactive input', submitter: 'koneru')
       }
     }
     stage('thing2 ') {
